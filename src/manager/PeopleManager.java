@@ -1,13 +1,13 @@
 package manager;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import people.FriendlyPeople;
 import people.LittleFriendlyPeople;
-import people.People;
+import people.PeopleInput;
 import people.PeopleKind;
 import people.VeryFriendlyPeople;
 public class PeopleManager {
-	ArrayList<People> peoples = new ArrayList<People>();
+	ArrayList<PeopleInput> peoples = new ArrayList<PeopleInput>();
 	Scanner sc;
 
 	PeopleManager(Scanner sc) {
@@ -15,38 +15,32 @@ public class PeopleManager {
 	}
 
 	public void addNetWork() {
-		People people;
+		PeopleInput peopleInput;
 		while(true) {
-			System.out.println("** Add Birthday Menu **");
-			System.out.println("--Select Kind--");
-			System.out.println("1. VeryFriendly");
-			System.out.println("2. Friendly");
-			System.out.println("3. LittleFriendly");
+			System.out.println("** Add NetWork Menu **");
+			setKind();
+			int knum = sc.nextInt();
 
-			int kind = sc.nextInt();
-
-			if (kind == 1) {
-				people = new VeryFriendlyPeople(PeopleKind.VeryFriendly);
-				people.getUserInput(sc);
+			switch(knum) {
+			case 1:
+				peopleInput = new VeryFriendlyPeople(PeopleKind.VeryFriendly);
+				peopleInput.getUserInput(sc);
 				break;
-			}
-			else if (kind == 2) {
-				people = new People(PeopleKind.Friendly);
-				people.getUserInput(sc);
+			case 2:
+				peopleInput = new FriendlyPeople(PeopleKind.Friendly);
+				peopleInput.getUserInput(sc);
 				break;
-			}
-
-			else if (kind == 3) {
-				people = new LittleFriendlyPeople(PeopleKind.LittleFriendly);
-				people.getUserInput(sc);
+			case 3:
+				peopleInput = new LittleFriendlyPeople(PeopleKind.LittleFriendly);
+				peopleInput.getUserInput(sc);
 				break;
-			}
-			else {
+			default :
 				System.out.println("Select 1 - 3");
 				continue;
 			}
+			break;
 		}
-		peoples.add(people);
+		peoples.add(peopleInput);
 	}
 
 
@@ -54,9 +48,26 @@ public class PeopleManager {
 
 
 	public void deleteNetWork() {
-		System.out.println("** Delete Birthday Menu **");
+		System.out.println("** Delete NetWork Menu **");
 		System.out.print("Enter Name : ");
 		String name = sc.next();
+		int index = findIndex(name);
+		removePeople(index, name);
+	}
+	
+	public int removePeople(int index, String name) {
+		if(index >= 0) {
+			peoples.remove(index);
+			System.out.println(name +" is deleted!!\n");
+			return 1;
+		}
+		else {
+			System.out.println("Not Found");
+			return -1;
+		}
+	}
+	
+	public int findIndex(String name) {
 		int index = -1;
 		for (int i = 0; i<peoples.size(); i++) {
 			if (name.equals(peoples.get(i).getName() )) {
@@ -65,62 +76,44 @@ public class PeopleManager {
 				break;
 			}
 		}
-		if(index >= 0) {
-			peoples.remove(index);
-			System.out.println(name +" is deleted!!\n");
-		}
-		else {
-			System.out.println("Not Found");
-			return;
-		}
+		return index;
 	}
 
 	public void editNetWork() {
-		System.out.println("** Edit Birthday Menu **");
+		System.out.println("** Edit NetWork Menu **");
 		System.out.print("Enter Name : ");
 		String EN = sc.next();
 		for (int i = 0; i<peoples.size(); i++) {
-			People people = peoples.get(i);
+			PeopleInput people = peoples.get(i);
 			if(EN.equals(people.getName())) {
 
 
 				while(true) {
-					System.out.println(" 1. edit Name ");
-					System.out.println(" 2. edit Birthday ");
-					System.out.println(" 3. edit Phone ");
-					System.out.println(" 4. edit Email");
-					System.out.println(" 5. Exit");
+					showEditMenu();
 					int num = sc.nextInt();
-
-					if (num == 1) {
-						System.out.print("Enter Name : ");
-						String name = sc.next();
-						people.setName(name);
-					}
-					else if (num == 2) {
-						System.out.print("Enter Birthday : ");
-						String birthday = sc.next();
-						people.setBirthday(birthday);
-					}
-					else if (num == 3) {
-						System.out.print("Enter Phone : ");
-						String phone = sc.next();
-						people.setPhone(phone);
-					}
-					else if (num == 4) {
-						System.out.print("Enter Email : ");
-						String email = sc.next();
-						people.setEmail(email);
-					}
-					else if (num == 5)
+					
+					switch(num) {
+					case 1:
+						people.setPeopleName(sc);
 						break;
-					else {
+					case 2:
+						people.setPeopleBirthday(sc);
+						break;
+					case 3:
+						people.setPeoplePhone(sc);
+						break;
+					case 4:
+						people.setPeopleEmail(sc);
+						break;
+					case 5:
+						break;
+					default :
 						System.out.println("Please select number from 1 to 5 !!");
 						continue;
 					}
+					break;
 				}
 			}
-			break;
 		}
 
 	}
@@ -131,4 +124,20 @@ public class PeopleManager {
 
 		}
 	}
+	
+	public void setKind() {
+		System.out.println("--Select Kind--");
+		System.out.println("1. VeryFriendly");
+		System.out.println("2. Friendly");
+		System.out.println("3. LittleFriendly");
+	}
+	
+	public void showEditMenu() {
+		System.out.println(" 1. edit Name ");
+		System.out.println(" 2. edit Birthday ");
+		System.out.println(" 3. edit Phone ");
+		System.out.println(" 4. edit Email");
+		System.out.println(" 5. Exit");
+	}
+
 }

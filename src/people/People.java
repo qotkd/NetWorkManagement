@@ -2,7 +2,7 @@ package people;
 
 import java.util.Scanner;
 
-public class People {
+public abstract class People implements PeopleInput{
 	protected PeopleKind kind = PeopleKind.Friendly;
 	protected String name;
 	protected String birthday;
@@ -87,19 +87,28 @@ public class People {
 		System.out.println("email : " + this.email);
 	}
 	
-	public void getUserInput(Scanner sc) {
-		System.out.print("Add Name : ");
+	public void setPeopleName(Scanner sc) {
+		System.out.print("Enter Name : ");
 		String name = sc.next();
 		this.setName(name);
-		System.out.print("Add Birthday :");
+	}
+	public void setPeopleBirthday(Scanner sc) {
+		System.out.print("Enter Birthday : ");
 		String birthday = sc.next();
 		this.setBirthday(birthday);
-		System.out.print("Add Phone Number :");
+	}
+	public void setPeoplePhone(Scanner sc) {
+		System.out.print("Enter Phone : ");
 		String phone = sc.next();
 		this.setPhone(phone);
-		System.out.print("Add Email Address :");
+	}
+	public void setPeopleEmail(Scanner sc) {
+		System.out.print("Enter Email : ");
 		String email = sc.next();
 		this.setEmail(email);
+	}
+	
+	public void wantMoreLess (Scanner sc) {
 		while(true) {
 			System.out.print("Do you want more friendly?? Answer (Y/N)");
 			char answer = sc.next().charAt(0);
@@ -108,7 +117,25 @@ public class People {
 				break;
 			}
 			else if (answer == 'N' || answer == 'n') {
-				this.tag = "Not important";
+				this.tag = "a little important";
+				break;
+			}
+			else {
+				System.out.println("Please answer (Y/N)");
+				continue;
+			}
+		}
+	}
+	public void recievePresents(Scanner sc) {
+		while(true) {
+			System.out.print("Did he/she give me birthday presents?? Anwser (Y/N)");
+			char answer = sc.next().charAt(0);
+			if (answer == 'Y' || answer == 'y') {
+				this.tag = "Very important";
+				break;
+			}
+			else if (answer == 'N' || answer == 'n') {
+				this.tag = "important";
 				break;
 			}
 			else {

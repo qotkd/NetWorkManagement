@@ -7,31 +7,38 @@ public class NetWorkingManagementMenu {
 		PeopleManager peopleManager = new PeopleManager(sc) ;
 
 		while (true) {
-			System.out.println("** Birthday Management System Menu **");
-			System.out.println(" 1. Add Birthday ");
-			System.out.println(" 2. Delete Birthday ");
-			System.out.println(" 3. Edit Birthday ");
-			System.out.println(" 4. View Birthday");
-			System.out.println(" 5. Exit ");
-			System.out.print(" Select number from 1 to 5 :");
+			showMenu();
 			int number = sc.nextInt();
-
-			if (number == 1)
+			switch(number) {
+			case 1:
 				peopleManager.addNetWork();
-			else if (number == 2)
-				peopleManager.deleteNetWork();
-			else if (number == 3)
-				peopleManager.editNetWork();
-			else if (number == 4)
-				peopleManager.viewAllNetWork();
-
-			else if (number == 5)
 				break;
-			else {
+			case 2:
+				peopleManager.deleteNetWork();
+				break;
+			case 3:
+				peopleManager.editNetWork();
+				break;
+			case 4:
+				peopleManager.viewAllNetWork();
+				break;
+			case 5:
+				break;
+			default :
 				System.out.println("Please select number from 1 to 5 !!");
 				continue;
 			}
 		}
+	}
+	
+	public static void showMenu() {
+		System.out.println("** NetWork Management System Menu **");
+		System.out.println(" 1. Add NetWork ");
+		System.out.println(" 2. Delete NetWork ");
+		System.out.println(" 3. Edit NetWork ");
+		System.out.println(" 4. View NetWorks");
+		System.out.println(" 5. Exit ");
+		System.out.print(" Select number from 1 to 5 :");
 	}
 }
 	

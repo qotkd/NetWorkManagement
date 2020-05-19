@@ -2,6 +2,8 @@ package people;
 
 import java.util.Scanner;
 
+import exception.EmailFormatException;
+
 public interface PeopleInput {
 	
 	public String getName();
@@ -14,7 +16,7 @@ public interface PeopleInput {
 
 	public void setPhone(String phone);
 
-	public void setEmail(String email);
+	public void setEmail(String email) throws EmailFormatException;
 
 	public void printInfo();
 	

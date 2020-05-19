@@ -1,5 +1,6 @@
 package manager;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import people.FriendlyPeople;
 import people.LittleFriendlyPeople;
@@ -17,30 +18,38 @@ public class PeopleManager {
 	public void addNetWork() {
 		PeopleInput peopleInput;
 		while(true) {
-			System.out.println("** Add NetWork Menu **");
-			setKind();
-			int knum = sc.nextInt();
+			try {
+				System.out.println("** Add NetWork Menu **");
+				setKind();
+				int knum = sc.nextInt();
 
-			switch(knum) {
-			case 1:
-				peopleInput = new VeryFriendlyPeople(PeopleKind.VeryFriendly);
-				peopleInput.getUserInput(sc);
-				break;
-			case 2:
-				peopleInput = new FriendlyPeople(PeopleKind.Friendly);
-				peopleInput.getUserInput(sc);
-				break;
-			case 3:
-				peopleInput = new LittleFriendlyPeople(PeopleKind.LittleFriendly);
-				peopleInput.getUserInput(sc);
-				break;
-			default :
-				System.out.println("Select 1 - 3");
-				continue;
-			}
+				switch(knum) {
+				case 1:
+					peopleInput = new VeryFriendlyPeople(PeopleKind.VeryFriendly);
+					peopleInput.getUserInput(sc);
+					break;
+				case 2:
+					peopleInput = new FriendlyPeople(PeopleKind.Friendly);
+					peopleInput.getUserInput(sc);
+					break;
+				case 3:
+					peopleInput = new LittleFriendlyPeople(PeopleKind.LittleFriendly);
+					peopleInput.getUserInput(sc);
+					break;
+				default :
+					System.out.println("Select 1 - 3");
+					continue;
+				}
+			peoples.add(peopleInput);
 			break;
 		}
-		peoples.add(peopleInput);
+			catch(InputMismatchException e) {
+				System.out.println("Please select number from 1 to 3 !!");
+				if(sc.hasNext()) {
+					sc.next();
+				}
+			}
+		}
 	}
 
 

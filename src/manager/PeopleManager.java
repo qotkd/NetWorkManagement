@@ -1,4 +1,5 @@
 package manager;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,9 +8,13 @@ import people.LittleFriendlyPeople;
 import people.PeopleInput;
 import people.PeopleKind;
 import people.VeryFriendlyPeople;
-public class PeopleManager {
+public class PeopleManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9119855603504010733L;
 	ArrayList<PeopleInput> peoples = new ArrayList<PeopleInput>();
-	Scanner sc;
+	transient Scanner sc;
 
 	PeopleManager(Scanner sc) {
 		this.sc = sc;
@@ -96,35 +101,40 @@ public class PeopleManager {
 			PeopleInput people = peoples.get(i);
 			if(EN.equals(people.getName())) {
 
-
 				while(true) {
-					showEditMenu();
-					int num = sc.nextInt();
-					
-					switch(num) {
-					case 1:
-						people.setPeopleName(sc);
+					try {
+						showEditMenu();
+						int num = sc.nextInt();
+
+						switch(num) {
+						case 1:
+							people.setPeopleName(sc);
+							break;
+						case 2:
+							people.setPeopleBirthday(sc);
+							break;
+						case 3:
+							people.setPeoplePhone(sc);
+							break;
+						case 4:
+							people.setPeopleEmail(sc);
+							break;
+						case 5:
+							break;
+						default :
+							System.out.println("Please select number from 1 to 5 !!");
+							continue;
+						}
 						break;
-					case 2:
-						people.setPeopleBirthday(sc);
-						break;
-					case 3:
-						people.setPeoplePhone(sc);
-						break;
-					case 4:
-						people.setPeopleEmail(sc);
-						break;
-					case 5:
-						break;
-					default :
+					} catch (InputMismatchException e) {
 						System.out.println("Please select number from 1 to 5 !!");
-						continue;
+						if(sc.hasNext()) {
+							sc.next();
+						}
 					}
-					break;
 				}
 			}
 		}
-
 	}
 	public void viewAllNetWork() {
 		System.out.println("The number of People : " + peoples.size() );
@@ -149,4 +159,7 @@ public class PeopleManager {
 		System.out.println(" 5. Exit");
 	}
 
+	public void setScanner(Scanner sc) {
+		this.sc = sc;
+	}
 }

@@ -10,35 +10,35 @@ import javax.swing.SpringLayout;
 import listener.ButtonCancelListener;
 import listener.ButtonSaveListener;
 
-public class PeopleAdder extends JPanel {
+public class PeopleEditer extends JPanel {
 
 	WindowFrame frame;
 	
-	public PeopleAdder(WindowFrame frame) {
+	public PeopleEditer(WindowFrame frame) {
 		this.frame = frame;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
 		JLabel labelName = new JLabel("Name : ",JLabel.TRAILING);
-		JTextField fieldName = new JTextField(15);
+		JTextField fieldName = new JTextField(10);
 		labelName.setLabelFor(fieldName);
 		panel.add(labelName);
 		panel.add(fieldName);
 		
 		JLabel labelBirth = new JLabel("Birthday : ",JLabel.TRAILING);
-		JTextField fieldBirth = new JTextField(15);
+		JTextField fieldBirth = new JTextField(10);
 		labelBirth.setLabelFor(fieldBirth);
 		panel.add(labelBirth);
 		panel.add(fieldBirth);
 		
 		JLabel labelPhone = new JLabel("Phone : ",JLabel.TRAILING);
-		JTextField fieldPhone = new JTextField(15);
+		JTextField fieldPhone = new JTextField(10);
 		labelPhone.setLabelFor(fieldPhone);
 		panel.add(labelPhone);
 		panel.add(fieldPhone);
 		
 		JLabel labelEmail = new JLabel("Email : ",JLabel.TRAILING);
-		JTextField fieldEmail = new JTextField(15);
+		JTextField fieldEmail = new JTextField(10);
 		labelBirth.setLabelFor(fieldEmail);
 		panel.add(labelEmail);
 		panel.add(fieldEmail);
@@ -50,6 +50,7 @@ public class PeopleAdder extends JPanel {
 
 		//save.addActionListener(new ButtonSaveListener(frame, fieldName, fieldBirth, fieldPhone, fieldEmail));
 		cancel.addActionListener(new ButtonCancelListener(frame));
+
 		
 		SpringUtilities.makeCompactGrid(panel,  5, 2, 6, 6, 6, 6);
 	

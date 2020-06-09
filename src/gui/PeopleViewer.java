@@ -1,13 +1,18 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class PeopleViewer extends JFrame{
+public class PeopleViewer extends JPanel{
 
-	public PeopleViewer() {
+	WindowFrame frame;
+	
+	public PeopleViewer(WindowFrame frame) {
+		this.frame = frame;
+		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("NAME");
 		model.addColumn("BIRTHDAY");
@@ -19,9 +24,6 @@ public class PeopleViewer extends JFrame{
 		
 		this.add(sp);
 		
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		this.setVisible(true);
+
 	}
 }

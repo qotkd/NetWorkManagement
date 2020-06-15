@@ -144,6 +144,14 @@ public class PeopleManager implements Serializable {
 		}
 	}
 	
+	public int size() {
+		return peoples.size();
+	}
+	
+	public PeopleInput get(int index) {
+		return peoples.get(index);
+	}
+	
 	public void setKind() {
 		System.out.println("--Select Kind--");
 		System.out.println("1. VeryFriendly");

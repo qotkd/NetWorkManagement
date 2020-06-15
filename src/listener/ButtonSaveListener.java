@@ -2,6 +2,7 @@ package listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -9,6 +10,7 @@ import javax.swing.JTextField;
 import gui.MenuSelection;
 import gui.PeopleViewer;
 import gui.WindowFrame;
+import people.PeopleInput;
 
 public class ButtonSaveListener implements ActionListener {
 
@@ -17,6 +19,7 @@ public class ButtonSaveListener implements ActionListener {
 	JTextField fieldBirth;
 	JTextField fieldPhone;
 	JTextField fieldEmail;
+	ArrayList<PeopleInput> peoples = new ArrayList<PeopleInput>();
 	
 	public ButtonSaveListener(WindowFrame frame, JTextField fieldName, JTextField fieldBirth, JTextField fieldPhone, JTextField fieldEmail) {
 		this.frame = frame;
@@ -30,10 +33,7 @@ public class ButtonSaveListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton b = (JButton) e.getSource();
-		//peoples.setName(fieldName.getText());
-		//peoples.setBirth(fieldBirth.getText());
-		//peoples.setPhone(fieldPhone.getText());
-		//peoples.setEmail(fieldEmail.getText());
+		
 		MenuSelection menuselection = new MenuSelection(frame);
 		frame.setupPanel(menuselection);
 	}

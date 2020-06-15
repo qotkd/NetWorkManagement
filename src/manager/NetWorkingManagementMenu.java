@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class NetWorkingManagementMenu {
@@ -23,6 +24,7 @@ public class NetWorkingManagementMenu {
 			peopleManager.setScanner(sc);
 		}
 
+		WindowFrame frame = new WindowFrame(peopleManager);
 		selectMenu(sc, peopleManager);
 		putObject(peopleManager, "peoplemanager.ser");
 	}

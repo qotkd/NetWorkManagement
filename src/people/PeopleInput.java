@@ -13,10 +13,16 @@ public interface PeopleInput {
 	public void setName(String name);
 
 	public void setBirthday(String birthday);
+	
+	public String getBirthday();
 
 	public void setPhone(String phone);
+	
+	public String getPhone();
 
 	public void setEmail(String email) throws EmailFormatException;
+	
+	public String getEmail();
 
 	public void printInfo();
 	

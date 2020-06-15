@@ -12,10 +12,12 @@ import javax.swing.SpringLayout;
 import listener.ButtonCancelListener;
 import listener.ButtonRemoveListener;
 import listener.ButtonSaveListener;
+import manager.PeopleManager;
 
 public class PeopleDeleter extends JPanel {
 
 	WindowFrame frame;
+	PeopleManager peopleManager;
 	
 	public PeopleDeleter(WindowFrame frame) {
 		this.frame = frame;
@@ -32,7 +34,7 @@ public class PeopleDeleter extends JPanel {
 		JButton cancel = new JButton("cancel");
 		panel.add(remove);
 		panel.add(cancel);
-		remove.addActionListener(new ButtonRemoveListener(frame));
+		remove.addActionListener(new ButtonRemoveListener(frame, fieldName, peopleManager));
 		cancel.addActionListener(new ButtonCancelListener(frame));
 		
 		SpringUtilities.makeCompactGrid(panel,  2, 2, 6, 6, 6, 6);

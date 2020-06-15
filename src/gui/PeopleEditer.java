@@ -48,7 +48,7 @@ public class PeopleEditer extends JPanel {
 		panel.add(save);
 		panel.add(cancel);
 
-		//save.addActionListener(new ButtonSaveListener(frame, fieldName, fieldBirth, fieldPhone, fieldEmail));
+		save.addActionListener(new ButtonSaveListener(frame, fieldName, fieldBirth, fieldPhone, fieldEmail));
 		cancel.addActionListener(new ButtonCancelListener(frame));
 
 		

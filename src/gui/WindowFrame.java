@@ -3,23 +3,28 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import manager.PeopleManager;
+
 public class WindowFrame extends JFrame{
 	
 	MenuSelection menuselection;
+	PeopleManager peopleManager;
 	PeopleAdder peopleAdder;
 	PeopleDeleter peopleDeleter;
 	PeopleEditer peopleEditer;
 	PeopleViewer peopleviewer;
 	
 	
-	public WindowFrame() {
+	public WindowFrame(PeopleManager peopleManager) {
 		this.menuselection = new MenuSelection(this);
+		this.peopleManager = peopleManager;
+		
 		this.peopleAdder = new PeopleAdder(this);
 		this.peopleDeleter = new PeopleDeleter(this);
 		this.peopleEditer = new PeopleEditer(this);
-		this.peopleviewer = new PeopleViewer(this);
+		this.peopleviewer = new PeopleViewer(this, this.peopleManager);
 		
-		this.setSize(500, 300);	
+		this.setSize(500, 500);	
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		this.setupPanel(menuselection);

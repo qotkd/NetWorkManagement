@@ -1,6 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -23,6 +27,7 @@ public class PeopleViewer extends JPanel{
 	public PeopleViewer(WindowFrame frame, PeopleManager peopleManager) {
 		this.frame = frame;
 		this.peopleManager = peopleManager;
+		peopleManager = getObject("peoplemanager.ser");
 		
 		System.out.println("***"+peopleManager.size()+"***");
 		
@@ -53,7 +58,25 @@ public class PeopleViewer extends JPanel{
 		panel.add(cancel);
 		
 		cancel.addActionListener(new ButtonCancelListener(frame));
-		
-		
+	}
+	public static PeopleManager getObject(String fileName) {
+		PeopleManager peopleManager = null;
+		try {
+			FileInputStream file = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			peopleManager = (PeopleManager) in.readObject();
+			
+			in.close();
+			file.close();
+
+		} catch (FileNotFoundException e) {
+			return peopleManager;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return peopleManager;
 	}
 }

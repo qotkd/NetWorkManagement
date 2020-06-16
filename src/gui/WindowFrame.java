@@ -1,12 +1,8 @@
 package gui;
 
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import manager.PeopleManager;
-import people.PeopleInput;
 
 public class WindowFrame extends JFrame{
 	

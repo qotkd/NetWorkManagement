@@ -1,6 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +16,7 @@ import listener.ButtonDeleteListener;
 import listener.ButtonEditListener;
 import listener.ButtonExitListener;
 import listener.ButtonViewListener;
+import manager.PeopleManager;
 
 public class MenuSelection extends  JPanel{
 
@@ -48,5 +53,6 @@ public class MenuSelection extends  JPanel{
 
 		this.add(panel1, BorderLayout.NORTH);
 		this.add(panel2, BorderLayout.CENTER);
+		
 	}
 }

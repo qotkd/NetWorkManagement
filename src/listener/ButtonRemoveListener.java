@@ -2,6 +2,10 @@ package listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -31,45 +35,33 @@ public class ButtonRemoveListener implements ActionListener {
 		
 		String name = text.getText();
 		System.out.println(name);
-		int index = findIndex(name);
-		removePeople(index, name);
-		MenuSelection menuselection = new MenuSelection(frame);
-		frame.setupPanel(menuselection);
-		for(int i=0; i<peopleManager.size();i++) {
-			System.out.println(peopleManager.get(i).getName());
-		}
+		int index = peopleManager.findIndex(name);
+		peopleManager.removePeople(index, name);
+		putObject(peopleManager,"peopleManager.ser");
+		WindowFrame frame = new WindowFrame(peopleManager);
+		
 	}
 
-	public int removePeople(int index, String name) {
-		if(index >= 0) {
-			PeopleInput pi = peopleManager.get(index);
-			//???????pi.remove(index);
-			//지우는 방법을 모르겠습니다.
-			System.out.println(name +" is deleted!!\n");
-			return 1;
-		}
-		else {
-			System.out.println("Not Found");
-			return -1;
-		}
-	}
-
-	public int findIndex(String name) {
-		int index = -1;
-		for (int i = 0; i<peopleManager.size(); i++) {
-			if (name.equals(peopleManager.get(i).getName() )) {
-
-				index = i;
-				break;
-			}
-		}
-		return index;
-	}
 	public PeopleInput get(int index) {
 		return peopleManager.get(index);
 	}
 	public int size() {
 		return peopleManager.size();
+	}
+	public static void putObject(PeopleManager peopleManager, String fileName) {
+		try {
+			FileOutputStream file = new FileOutputStream(fileName);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(peopleManager);
+			out.close();
+			file.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

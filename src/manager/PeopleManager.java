@@ -56,8 +56,9 @@ public class PeopleManager implements Serializable {
 			}
 		}
 	}
-
-
+	public void add(PeopleInput pi) {
+		peoples.add(pi);
+	}
 
 
 

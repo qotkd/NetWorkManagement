@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import gui.MenuSelection;
 import gui.PeopleViewer;
 import gui.WindowFrame;
+import manager.PeopleManager;
 
 public class ButtonExitListener implements ActionListener {
 

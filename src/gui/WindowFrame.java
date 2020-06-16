@@ -1,9 +1,12 @@
 package gui;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import manager.PeopleManager;
+import people.PeopleInput;
 
 public class WindowFrame extends JFrame{
 	
@@ -14,14 +17,13 @@ public class WindowFrame extends JFrame{
 	PeopleEditer peopleEditer;
 	PeopleViewer peopleviewer;
 	
-	
 	public WindowFrame(PeopleManager peopleManager) {
 		this.menuselection = new MenuSelection(this);
 		this.peopleManager = peopleManager;
 		
-		this.peopleAdder = new PeopleAdder(this);
-		this.peopleDeleter = new PeopleDeleter(this);
-		this.peopleEditer = new PeopleEditer(this);
+		this.peopleAdder = new PeopleAdder(this, this.peopleManager);
+		this.peopleDeleter = new PeopleDeleter(this, this.peopleManager);
+		this.peopleEditer = new PeopleEditer(this, this.peopleManager);
 		this.peopleviewer = new PeopleViewer(this, this.peopleManager);
 		
 		this.setSize(500, 500);	

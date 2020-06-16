@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,13 +11,18 @@ import javax.swing.SpringLayout;
 
 import listener.ButtonCancelListener;
 import listener.ButtonSaveListener;
+import manager.PeopleManager;
+import people.PeopleInput;
 
 public class PeopleAdder extends JPanel {
 
 	WindowFrame frame;
+	PeopleManager peopleManager;
+	ArrayList<PeopleInput> peoples = new ArrayList<PeopleInput>();
 	
-	public PeopleAdder(WindowFrame frame) {
+	public PeopleAdder(WindowFrame frame, PeopleManager peopleManager) {
 		this.frame = frame;
+		this.peopleManager = peopleManager;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -48,7 +55,7 @@ public class PeopleAdder extends JPanel {
 		panel.add(save);
 		panel.add(cancel);
 
-		save.addActionListener(new ButtonSaveListener(frame, fieldName, fieldBirth, fieldPhone, fieldEmail));
+		save.addActionListener(new ButtonSaveListener(frame, peopleManager, fieldName, fieldBirth, fieldPhone, fieldEmail));
 		cancel.addActionListener(new ButtonCancelListener(frame));
 		
 		SpringUtilities.makeCompactGrid(panel,  5, 2, 6, 6, 6, 6);

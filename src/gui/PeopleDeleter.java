@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,14 +14,16 @@ import listener.ButtonCancelListener;
 import listener.ButtonRemoveListener;
 import listener.ButtonSaveListener;
 import manager.PeopleManager;
+import people.PeopleInput;
 
 public class PeopleDeleter extends JPanel {
 
 	WindowFrame frame;
 	PeopleManager peopleManager;
 	
-	public PeopleDeleter(WindowFrame frame) {
+	public PeopleDeleter(WindowFrame frame, PeopleManager peopleManager) {
 		this.frame = frame;
+		this.peopleManager = peopleManager;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		

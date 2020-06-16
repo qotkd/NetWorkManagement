@@ -4,24 +4,21 @@ import java.awt.BorderLayout;
 import java.util.Vector;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import listener.ButtonCancelListener;
-import listener.ButtonSaveListener;
 import manager.PeopleManager;
 import people.PeopleInput;
 
 public class PeopleViewer extends JPanel{
 
-	private static final Object BorderLayout_SOUTH = null;
-
 	WindowFrame frame;
 	
 	PeopleManager peopleManager;
+	
 	
 	public PeopleViewer(WindowFrame frame, PeopleManager peopleManager) {
 		this.frame = frame;

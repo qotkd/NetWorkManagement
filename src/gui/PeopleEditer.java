@@ -9,13 +9,15 @@ import javax.swing.SpringLayout;
 
 import listener.ButtonCancelListener;
 import listener.ButtonSaveListener;
+import manager.PeopleManager;
 
 public class PeopleEditer extends JPanel {
 
 	WindowFrame frame;
-	
-	public PeopleEditer(WindowFrame frame) {
+	PeopleManager peopleManager;
+	public PeopleEditer(WindowFrame frame, PeopleManager peopleManager) {
 		this.frame = frame;
+		this.peopleManager = peopleManager;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -48,7 +50,7 @@ public class PeopleEditer extends JPanel {
 		panel.add(save);
 		panel.add(cancel);
 
-		save.addActionListener(new ButtonSaveListener(frame, fieldName, fieldBirth, fieldPhone, fieldEmail));
+		save.addActionListener(new ButtonSaveListener(frame, peopleManager, fieldName, fieldBirth, fieldPhone, fieldEmail));
 		cancel.addActionListener(new ButtonCancelListener(frame));
 
 		

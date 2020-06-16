@@ -5,11 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import gui.WindowFrame;
 import log.EventLogger;
+import people.PeopleInput;
 
 public class NetWorkingManagementMenu {
 	static EventLogger Logger = new EventLogger("log.txt");
@@ -23,7 +25,6 @@ public class NetWorkingManagementMenu {
 		else {
 			peopleManager.setScanner(sc);
 		}
-
 		WindowFrame frame = new WindowFrame(peopleManager);
 		selectMenu(sc, peopleManager);
 		putObject(peopleManager, "peoplemanager.ser");
